@@ -13,17 +13,16 @@ const burger = (props) => {
 
   let transformedIngredients = Object.keys(props.ingredients)
     .map(igKey => { // igkey = ingredient key -- Note: key is type of ingredients needed & value is how many ingredients needed
-      return [...Array(props.ingredients[igKey])].map((_, i) => { // [,] - for example (cheese 2 will be [cheese, cheese])
+      return [...Array(props.ingredients[igKey])].map((_, i) => { // [,] - for example (cheese 2 will be [cheese, cheese]), i => we only want the index
         return <BurgerIngredient key={igKey + i} type={igKey} />; // igKey + i ==> cheese2, igKey => cheese
       }); 
     })
-    .reduce((arr, el) => {
+    .reduce((arr, el) => { // incase we have no ingredient(s) added
       return arr.concat(el)
-
     }, []);
   //console.log(transformedIngredients);
   if (transformedIngredients.length === 0) {
-    transformedIngredients = <p>Please start adding ingredients!</p>
+    transformedIngredients = <p>Please start adding ingredients!</p> // display this if no ingredient
   }
 
   return (
