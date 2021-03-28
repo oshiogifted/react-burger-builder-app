@@ -1,0 +1,33 @@
+/* 
+  Developing styles for mobile first
+*/
+
+.Toolbar{
+  height: 56px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #703B09;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 90;
+}
+
+.Toolbar nav { 
+  height: 100%; /* nav height is relative to toolbar height */
+}
+
+.Logo { /* Note: .Logo is defined in 3 diff. classes but css module helps us so that they don't interfere */
+  height: 80%;
+}
+
+/* media query for when we're on a mobile device (if max-width is 499px) */
+@media(max-width: 499px) {
+  .DesktopOnly {
+    display: none; /* overriden for smaller device. Bigger device will take the default display: block defined in NavigationItem.css */
+  }
+}

@@ -1,0 +1,36 @@
+/* the side drawer will only be visible on small device screens */
+
+.SideDrawer { 
+  position: fixed;  /* should always be on the page (static element feeling) even if we scroll */
+  width: 280px;
+  max-width: 70%; /* so that on super narrow devices, it doesn't go over the edges, so max width is 70% */
+  height: 100%; /* take the full screen height */
+  left: 0;
+  top: 0;
+  z-index: 200; /* higher num than backdrop (where we used 100) so that's its easy to use it since it'll be above the backdrop */
+  background-color: white;
+  padding: 32px 16px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-out; /* react to changes of transform property and animate them over 0.3s - important for closing and opening sidedrawer */
+}
+
+/* if device width exeeds 500px */
+@media (min-width: 500px) {
+  .SideDrawer {
+    display: none; /* can never see the side drawer on bigger devices */
+  }
+}
+
+/* Open and Close are attached conditionally and responsible for playing an animation */
+.Open {
+  transform: translateX(0); /* Note the 'transform' keyword (as used in tansition in .SideDrawer) -- translate the sidedrawer position on the x axis using potisions defined in .SideDrawer */
+}
+
+.Close {
+  transform: translate(-100%); /* shift it to the left when sidedrawer is closed */
+}
+
+.Logo {
+  height: 11%;
+  margin-bottom: 42px;
+}

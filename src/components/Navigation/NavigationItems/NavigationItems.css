@@ -1,0 +1,22 @@
+/* 
+  - started with desktop styling here as we don't have side drawer yet
+  - now that we've added sidedrawer, we add media query for desktop. When the min-width is greater than 500px, use media query (which overrides default .NavigationItem styling) styling
+*/
+
+/* Mobile first approach here. The below design is for mobile */
+.NavigationItems {
+  margin: 0;
+  padding: 0;
+  list-style: none; /* remove <ul> list default styling */
+  display: flex; /* align list items (with their box) next to each other horizontally*/
+  flex-flow: column; /* so that the items in mobile devices sit beneath each other veritically */
+  align-items: center; /* horizontally centered item text in the box */
+  height: 100%; /* to take full height of toolbar */
+}
+
+/* media query for desktop devices */
+@media (min-width: 500px) {
+  .NavigationItems{
+    flex-flow: row; /* nav items should sit next to each other horizontally */
+  }
+}
