@@ -28,7 +28,7 @@ and then add media queries to make it look good on bigger devices
 @media(min-width: 500px) {
   .NavigationItem {
     margin: 0;
-    display: flex; /* added to make sure we can center the link in the list item veritically */
+    display: flex; /* added to make sure we can center the link in the list item horizontally */
     height: 100%;
     width: auto;
     align-items: center; /* align items center veritcally */

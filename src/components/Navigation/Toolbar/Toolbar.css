@@ -9,11 +9,11 @@
   top: 0;
   left: 0;
   background-color: #703B09;
-  display: flex;
-  justify-content: space-between;
+  display: flex; /* align items next to each other in a row (horizontally) */
+  justify-content: space-between; /* so that available space is filled with elements inside toolbar, and that they keep some distance between each other*/
   align-items: center;
   padding: 0 20px;
-  box-sizing: border-box;
+  box-sizing: border-box; /* to make sure tool bar is styled correctly even with the padding */
   z-index: 90;
 }
 

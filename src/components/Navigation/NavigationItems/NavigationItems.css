@@ -14,7 +14,10 @@
   height: 100%; /* to take full height of toolbar */
 }
 
-/* media query for desktop devices */
+/* media query for desktop devices - min width to apply flex-flow: row is at 500px and beyond  */
+/* Note: think of min-width as - apply settings for min width and above, while max width as - apply settings for max width and below (max is the threshold) */
+/* So in our case, min-width: 500px is 500px and above, max-width 500px is 500px and below */
+/* refer to this - https://www.w3schools.com/css/tryit.asp?filename=tryresponsive_mediaquery */
 @media (min-width: 500px) {
   .NavigationItems{
     flex-flow: row; /* nav items should sit next to each other horizontally */
