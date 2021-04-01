@@ -19,7 +19,11 @@ class Modal extends Component {
       return true;
     } */
 
-    return nextProps.show !== this.props.show;
+    // we only update the component if the show state changed
+    // Added nextProps.children !== this.props.children so that it does update if it gets new chlidren.
+    // ..this helps us with the modal showing the spinner
+    // if new children props IS different from old children props, return true, thereby updating the modal
+    return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
   }
 
   componentDidUpdate () {
