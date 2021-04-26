@@ -34,8 +34,8 @@ const withErrorHandler = (WrappedComponent, axios) => {
     // its called before the component is destroyed (for example, when we switch pages from burger builder to checkout)
     componentWillUnmount() {
       //console.log('[withErrorHandler] componentWillUnmount ', this.reqInterceptor, this.resInterceptor); // for testing
-      axios.interceptors.rquest.eject(this.reqInterceptor);
-      axios.interceptors.rquest.eject(this.resInterceptor);
+      axios.interceptors.request.eject(this.reqInterceptor);
+      axios.interceptors.request.eject(this.resInterceptor);
     }
 
     

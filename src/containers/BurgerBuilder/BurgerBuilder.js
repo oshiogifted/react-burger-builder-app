@@ -29,6 +29,7 @@ class BurgerBuilder extends Component {
   };
 
   componentDidMount () {
+    console.log(this.props);
     // if we couldn't get (i.e., the link is broken) we'll show the spinner
     axios.get('https://react-my-burger-e8d12-default-rtdb.firebaseio.com/ingredients.json')
       .then(response => {
@@ -103,35 +104,22 @@ class BurgerBuilder extends Component {
 
   purchaseContinueHandler = () => {
     //alert('You continue!');
-    this.setState ({loading: true}); // we're loading when we click "continue" in modal
-    const order = {
-      // dummy order to store in firebase backend
-      ingredients: this.state.ingredients,
-      price: this.state.totalPrice, // should be calculated on the server ;)
-      customer: {
-        name: 'Jon Doe',
-        address: {
-          street: 'Teststreet 1',
-          zipCode: 'K4B4Z2',
-          country: 'Germany'
-        },
-        email: 'test@test.com'
-      },
-      deliveryMethod: 'fastest'
+
+    // pass the ingredients from brugerbuilder to checkout
+    const queryParams = [];
+    for (let i in this.state.ingredients) {
+      // queryParams: key = <something> (ex. ?quick-submit=true)
+      // propertyname = propertyvalue (key = value => salad = 1, bacon = 2 etc...)
+      queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i])); // encodeURIComponent - encodes elements such that they can be used in the url (relevant for whitespace and so on...)
     }
-    axios.post('/orders.json', order) // need to add .json for firebase to function correctly
-      .then(response => {
-        //console.log(response); // log reponse -- debug purposes
-        // stop loading no matter what the response is, because the request is done, even if it failed
-        // purchasing: false closes the modal
-        this.setState({loading: false, purchasing: false}); // this will show order summary
-      })
-      .catch(error => {
-        //console.log(error); // log error -- debug purposes
-        // stop loading even if an error occured
-        // purchasing to false closes the modal
-        this.setState({loading: false, purchasing: false}); // this will show order summary (but we close the modal with purchasing: false)
-      }); 
+
+    queryParams.push('price=' + this.state.totalPrice);
+
+    const queryString = queryParams.join('&'); // salad&=1
+    this.props.history.push({
+      pathname: '/checkout',
+      search: '?' + queryString // ?salad&=1
+    });
   }
 
 
